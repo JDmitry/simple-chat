@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat</title>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+	<div id="app">
+	  <template v-if="name">
+	    <p>
+        Привет, <i>{{ name }}</i>! <button @click="exit">Выйти</button>
+      </p>
+	    <p>
+        <input @keyup.enter="send" v-model.trim="newMessage" placeholder="Сообщение…">
+        <button @click="send">Отправить</button>
+      </p>
+      <div v-for="message in messages" :key="message.id">
+        <b>{{ message.sender }}</b>: {{ message.text }}
+      </div>
+    </template>
+    <template v-else>
+      <p>
+    	  <input @keyup.enter="enter" v-model.trim="newName" placeholder="Имя">
+      </p>
+  	  <p>
+        <button @click="enter">Войти</button>
+      </p>
+    </template>
+    </div>
+	<script src="index.js"></script>
+	</body>
+</html>
