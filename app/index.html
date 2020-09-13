@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Chat</title>
+    <title>Чат</title>
+    <link rel="stylesheet" href="css/style.css">
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	</head>
 	<body>
+    
 	<div id="app">
 	  <template v-if="name">
-	    <p>
-        Привет, <i>{{ name }}</i>! <button @click="exit">Выйти</button>
-      </p>
-	    <p>
+      <div id="navigation-bar">
+        {{ name }}, добро пожаловать! <button @click="exit">Выйти</button>
+      </div>
+      <div id="send-bar">
         <input @keyup.enter="send" v-model.trim="newMessage" placeholder="Сообщение…">
         <button @click="send">Отправить</button>
-      </p>
-      <div v-for="message in messages" :key="message.id">
-        <b>{{ message.sender }}</b>: {{ message.text }}
+      </div>
+      <div id="output" v-for="message in messages" :key="message.id">
+        <b>{{ message.sender }}</b>: <span class="message-text">{{ message.text }}</span>
       </div>
     </template>
     <template v-else>
-      <p>
-    	  <input @keyup.enter="enter" v-model.trim="newName" placeholder="Имя">
-      </p>
-  	  <p>
+      <header>
+        <h1>Чат</h1>
+      </header>
+      <div class="enter-form">
+    	  <input @keyup.enter="enter" v-model.trim="newName" placeholder="Имя"><br>
         <button @click="enter">Войти</button>
-      </p>
+      </div>    
     </template>
     </div>
-	<script src="index.js"></script>
+  
+	<script src="js/chat.js"></script>
 	</body>
 </html>
